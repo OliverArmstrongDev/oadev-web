@@ -1,0 +1,17 @@
+.portfolio{
+    margin-top: var(--header-height);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 5em;
+        margin-bottom: 13em;
+    }
+}

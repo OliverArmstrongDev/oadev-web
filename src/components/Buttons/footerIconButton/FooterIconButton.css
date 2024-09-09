@@ -1,0 +1,19 @@
+
+.footer-button {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  color: rgb(44, 44, 44);
+  display: flex;
+  position: relative;
+  gap: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  align-items: center;
+  position: relative;
+}
+
+.footer-button:not(:active):hover,
+.footer-button:focus {
+  background-color: rgb(178, 178, 178);
+}

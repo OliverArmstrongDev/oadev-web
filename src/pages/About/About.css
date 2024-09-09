@@ -1,0 +1,3 @@
+.about{
+    margin: Calc(1.2 * var(--header-height));
+}

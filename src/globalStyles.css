@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap");
+/* global variables */
+:root {
+    --header-height: 90px;
+    --sidebar-width: 220px;
+    --footer-height: 60px;
+    --footer-text-color: #000;
+    --footer-text-size: 13px;
+    --background-colour: rgb(255, 255, 255);
+    --header-colour:rgb(232, 232, 232);
+    --sidebar-colour: rgb(232, 232, 232);
+    --mobile-menu-colour: rgb(0, 0, 0);
+  }
+
+
+
+.card {
+  width: 70vw;
+  /* height: 100%; */
+  border-radius: 30px;
+  background: #ffffff;
+  /* box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff; */
+  padding: 1.2em;
+  /* margin: 4rem 0; */
+  
+}
+
+
+h1, h2, h3, h4, h5, span, p{
+    font-family: "poppins";
+    line-height: 2.2ch;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.6em;
+    }
+    .card{
+      width: 80vw;
+    }
+  }

@@ -1,0 +1,29 @@
+
+.sidebar-button-container {
+  display: flex;
+  flex-direction: column;
+  width: Calc(var(--sidebar-width) - 15px);
+  background-color: rgb(206, 206, 206);
+  justify-content: center;
+  border-radius: 5px;
+  margin-top: 0.4em;
+}
+
+.sidebar-button {
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  color: rgb(44, 44, 44);
+  display: flex;
+  position: relative;
+  gap: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar-button:not(:active):hover,
+.sidebar-button:focus {
+  background-color: rgb(178, 178, 178);
+}
