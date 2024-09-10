@@ -2,19 +2,38 @@ import { useEffect } from "react";
 import LoginForm from "../../forms/Login/LoginForm";
 import { useApp } from "../../hooks/useApp";
 import "./Home.css";
+import { Link } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
-  const { setShowMobileMenu, isLoggedIn } = useApp();
+  const { isLoggedIn, setHasRun, hasRun } = useApp();
+
+  useEffect(() => {
+    // This keeps page to top on login click...
+    window.scrollTo(0, 0);
+    let loadingTimeout: NodeJS.Timeout;
+    if (!hasRun) {
+      loadingTimeout = setTimeout(() => {
+        setHasRun(true);
+      }, 3000);
+    }
+    return () => clearTimeout(loadingTimeout);
+  }, [isLoggedIn, hasRun, setHasRun]);
+
   return !isLoggedIn ? (
     <LoginForm />
+  ) : !hasRun ? (
+    <Loading />
   ) : (
     <div className="card">
       <div className="home-text-content">
-        <h3>Well, maybe 'magic' was a bit dramatic... </h3>
-        <p>But there is a cool Logout button that works!</p>
+        <h3>
+          Well, maybe 'magic' was a bit dramatic for some sliding text... 😅
+        </h3>
+        <span>(But there is a cool Logout button that works!)</span>
 
         <p>
-          Whether you need a simple website, a Wordpress site, a React app, or a
+          Whether you need a simple website, a React app, or a
           full stack app built - I can help.
         </p>
         <p>
@@ -39,7 +58,11 @@ const Home = () => {
         <p>
           (Once you've finished playing with the login and logout functionality,
           head over to the portfolio page to see some examples of my work. And
-          then you can contact me via the contact page.)
+          then you can contact me via the{" "}
+          <Link style={{ textDecoration: "none" }} to={"/Contact"}>
+            contact
+          </Link>{" "}
+          page.)
         </p>
       </div>
     </div>

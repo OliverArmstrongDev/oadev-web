@@ -1,91 +1,124 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Buttons/primary/Button";
 import Label from "../../components/Label/Label";
-import { useForm, Controller } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import "./ContactForm.css";
-import { useLoginForm } from "../../hooks/useLoginForm";
-import { useApp } from "../../hooks/useApp";
+import emailjs from "@emailjs/browser";
 
-
+const {
+  REACT_APP_EMAILJS_SERVICE_ID,
+  REACT_APP_EMAILJS_PUBLIC_KEY,
+  REACT_APP_EMAILJS_TEMPLATE_ID,
+} = process.env;
 
 const ContactForm = () => {
-
-
+  const [formError, setFormError] = useState<string>("");
+  const [successMsg, setSuccessMsg] = useState<string>("");
+  const [sending, setSending] = useState<boolean>(false);
   const {
-    control,
+    register,
     handleSubmit,
-    setValue,
     reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
       name: "",
       email: "",
+      message: "",
     },
   });
 
-  // useEffect(() => {
-  //   if (editing && formState) {
-  //     reset(formState); // Prepopulate the form with existing data
-  //   } else {
-  //     reset(); // Clear form if not editing
-  //   }
-  // }, [editing, formState, reset]);
+  useEffect(() => {
+    if (
+      !REACT_APP_EMAILJS_SERVICE_ID ||
+      !REACT_APP_EMAILJS_PUBLIC_KEY ||
+      !REACT_APP_EMAILJS_TEMPLATE_ID
+    ) {
+      setFormError("Missing email config variable(s)");
+    } else {
+      setFormError("");
+    }
+  }, []);
+
+  const validateFields = (fieldName: string, type: string) => {
+    if (type.includes("required")) return `${fieldName} is required`;
+    if (type.includes("minLength"))return `${fieldName} must be at least 2 characters`;
+    if (type.includes("pattern"))return `Not a valid email address`;
+    return "";
+  };
 
   const onSubmit = (data: any) => {
-    console.log("🚀 ~ LOG: ");
+    if (sending) return;
+    setSending(true);
+    emailjs
+      .send(REACT_APP_EMAILJS_SERVICE_ID!, REACT_APP_EMAILJS_TEMPLATE_ID!, data, {
+        publicKey: REACT_APP_EMAILJS_PUBLIC_KEY!,
+      })
+      .then(
+        () => {
+          setSuccessMsg("Message sent successfully. Thank you.");
+        },
+        (error) => {
+          setFormError("Message failed to send: " + error);
+        }
+      ).finally(()=>{
+        setSending(false);
+      });
     reset(); // Clear form after submission
+   
   };
 
   return (
     <div className="contact card">
       <div className="contact-text-content">
         <h3>Contact Me</h3>
-        <span>I usually reply within a few hours. (If not, the next day)</span>
-       
+        <span>I will reply within a few hours. (If not, the next day)</span>
       </div>
-      <div className="form-container">
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="contact-form-container">
+        <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="input-container">
             <Label styles={{ paddingLeft: "8px" }} fontSize={15}>
-              name:
+              Name:
             </Label>
-            <Controller
-              name="name"
-              control={control}
-              render={({ field }) => (
-                <input
-                  {...field}
-                  className="input-field"
-                  type="text"
-                  placeholder="Enter your name"
-                  
-                />
-              )}
+            <input
+            className="input-field"
+              placeholder="Name"
+              type="text"
+              {...register("name", { required: true, minLength: 2 , })}
             />
             {errors.name && (
-              <p className="error-message">{errors.name.message}</p>
+              <p className="error-message">{validateFields("Name", errors.name.type)}</p>
             )}
           </div>
           <div className="input-container">
             <Label styles={{ paddingLeft: "8px" }} fontSize={15}>
-              email:
+              Email:
             </Label>
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <input
-                  {...field}
-                  className="input-field"
-                  type="email"
-                  placeholder="Enter your email"
-                  
-                />
-              )}
+            <input
+              {...register("email", { required: true, pattern: {
+                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: 'Please enter a valid email',
+            }})}
+              className="input-field"
+              type="email"
+              placeholder="Enter your email"
             />
             {errors.email && (
-              <p className="error-message">{errors.email.message}</p>
+              <p className="error-message">{validateFields("Email", errors.email.type)}</p>
+            )}
+          </div>
+          <div className="input-container">
+            <Label styles={{ paddingLeft: "8px" }} fontSize={15}>
+              Message:
+            </Label>
+            <textarea
+              {...register("message", { required: true})}
+              className="input-field"
+              rows={5}
+              placeholder="Enter your message"
+            />
+            {errors.message && (
+              <p className="error-message">{validateFields("Message", errors.message.type)}</p>
             )}
           </div>
 
@@ -93,8 +126,12 @@ const ContactForm = () => {
             buttonType="submit"
             buttonText={"Send"}
             onButtonClick={() => {}}
+            disabled={sending || !!formError.length}
           />
         </form>
+        {sending && <p className="sending"></p>}
+        {formError && <p className="error-message">{formError}</p>}
+        {successMsg && <p className="success">{successMsg}</p>}
       </div>
     </div>
   );

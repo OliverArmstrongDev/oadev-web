@@ -1,3 +1,22 @@
-.about{
-    margin: Calc(1.2 * var(--header-height));
+.about-container{
+    /* margin: Calc(1.2 * var(--header-height)) 0; */
+    margin: var(--header-height) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.about-image{
+    width: 30%;
+    margin-top: 3em;
+}
+.about-container img {
+    border-radius: 30%;
+    }
+
+    @media (max-width: 768px){
+        .about-image{
+            width: 57%;
+        }
+    }

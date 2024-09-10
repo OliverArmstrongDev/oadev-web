@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Header:React.FC<Props> = ({headerRight, headerLeft}) => {
-  const {setShowMobileMenu, showMobileMenu, logout, isLoggedIn} = useApp();
+  const {setShowMobileMenu, setHasRun, showMobileMenu, logout, isLoggedIn} = useApp();
   const navigate = useNavigate();
   
   const handleMobileMenuClick: React.MouseEventHandler<HTMLDivElement> = () => {
@@ -20,6 +20,7 @@ const Header:React.FC<Props> = ({headerRight, headerLeft}) => {
 
   const handleLogout: React.MouseEventHandler<HTMLDivElement> = () => {
     logout();
+    setHasRun(false);
     navigate("/")
   };
 

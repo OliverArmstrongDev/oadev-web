@@ -17,7 +17,6 @@ const LoginForm = ({ editing }: LoginFormProps) => {
   const {
     control,
     handleSubmit,
-    setValue,
     reset,
     formState: { errors },
   } = useForm({
@@ -43,6 +42,7 @@ const LoginForm = ({ editing }: LoginFormProps) => {
 
   return (
     <div className="card">
+       <div className="login-container">
       <div className="login-text-content">
         <h3>Hi there!</h3>
         <span>Thanks for stopping by. I'm Oliver, a full stack software developer / engineer.</span>
@@ -64,17 +64,17 @@ const LoginForm = ({ editing }: LoginFormProps) => {
           libraries - no dependancies, just good'ol fashon coding skills. 💥
         </p>
 
-        <span>
-          <strong>What's with the login form you ask?</strong>
-        </span>
         <p>
-          Every (good) app needs a login form. This one's even prefilled for
-          you!
+          <strong>What's with the login form you ask?</strong>
+        </p>
+        <p>
+          Every good app needs a login form. (This one's even prefilled for
+          you!)
         </p>
         <p>Click the button to login and see the magic happen... </p>
       </div>
-      <div className="form-container">
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="login-form-container">
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="input-container">
             <Label styles={{ paddingLeft: "8px" }} fontSize={15}>
               Username:
@@ -125,6 +125,7 @@ const LoginForm = ({ editing }: LoginFormProps) => {
           />
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import Image from "../../components/Image/Image";
 import PortfolioCard from "../../components/PortfolioCard/PortfolioCard";
 import "./Portfolio.css";
 
@@ -6,7 +5,7 @@ import "./Portfolio.css";
 import freebird from "../../assets/images/freebird.png";
 import frozen from "../../assets/images/frozen.png";
 import greyburn from "../../assets/images/greyburn.png";
-import coldcreek from "../../assets/images/coldcreek.png";
+import farms from "../../assets/images/farms.png";
 import listMeister from "../../assets/images/list-meister.png";
 
 const Portfolio = () => {
@@ -14,20 +13,25 @@ const Portfolio = () => {
     <div className="portfolio">
       <div className="card">
         <h2>Portfolio</h2>
-        <span>A handfull of projects and websites.</span>
+        <span><strong> The majority of my work has been for closed source applications and
+          therefore cannot be shared publicly. </strong>
+         
+        </span>
+        <p>However, below are a handfull of projects I have completed in the past.</p>
         <p>
-          My recent projects are React apps (MERN stack), but I also worked on a number of Wordpress sites, there are a couple shown here.
+          Some are full stack apps, one is a Wordpress site and the others are ReactJs or React Native apps.
         </p>
       </div>
       <div className="portfolio-grid">
         <PortfolioCard
-          title="Coldcreek Farms Water Monitoring"
+          title="Farms Water Monitoring"
           text="This is a farm water meter monitoring React web app. I built the full-stack (MERN) app, while working for Bluetwist NZ."
-          imageSrc={coldcreek}
+          imageSrc={farms}
         />
         <PortfolioCard
           title="Building Maintenance Portal"
-          text="This is a fault reporting web app for a building maintenance company, which solved their problem of having to manually enter data into a CRM from up to a hundred weekly emails."
+          text="This is a fault reporting web app for a building maintenance company, which solved their problem of having to manually enter data into a CRM from up to a hundred weekly emails.
+          Essentially an email was forwarded to this app and it formatted the data and created tickets in the CRM."
           imageSrc={greyburn}
         />
         <PortfolioCard
@@ -43,7 +47,7 @@ const Portfolio = () => {
         />
         <PortfolioCard
           title="My first Ever React Game!"
-          text="One of the first React app's I made when I started learning React. Not the best design ever, but you gotta start somewhere!"
+          text="One of the first React app's I made for my daughter when I was learning React. Not the best design ever, but you gotta start somewhere!"
           imageSrc={frozen}
         />
       </div>

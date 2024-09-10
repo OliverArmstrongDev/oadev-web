@@ -7,31 +7,25 @@
  
 }
 
-.form-container {
+.contact-form-container {
     width: 60vw;
     height: fit-content;
     background: #FFFFFF;
     box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
     border-radius: 26px;
-    max-width: 450px;
+    max-width: 45vw;
+    margin-top: 2em;
   }
   
-  .form {
+  .contact-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
     overflow: hidden;
+    
   }
   
-  .form-navigate-back{
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column;
-    gap:1em;
-    color: red;
-    align-items: center;
-  }
  
   .input-container {
     width: 100%;
@@ -60,24 +54,49 @@
   
   .error-message{
     color: red;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .success{
+    color:#02adb5;
+    font-weight: 500;
+    text-align: center;
   }
 
+  .sending{
+    border: 3px solid;
+    height: 30px;
+    border-color: transparent black transparent #02adb5;
+    width: 30px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    animation: sending 2s linear infinite;
+  }
   
+  @keyframes sending { 
+    0% { 
+       transform: rotate(0deg); 
+    } 
+
+    100% { 
+      transform: rotate(360deg);  
+    } 
+  }
   /* Mobile breakpoints */
 
   @media (max-width: 768px) {
     
-    .form-container {
-        width: 80vw;
-        margin-left: 0;
+    .contact-form-container {
+        width: 85vw;
+        margin-top: 2em;
+        max-width: 100%;
       }
-      .form-navigate-back{
+      .contact-form-navigate-back{
         margin-top: Calc(var(--header-height) + 10px);
       }
-      .login-text-content{
-        width: 90vw;
-      }
+      
   }
  
   

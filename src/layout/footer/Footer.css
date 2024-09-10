@@ -14,7 +14,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 5px;
+    padding-top: 7px;
     font-size: var(--footer-text-size);
     gap: 0.3em;
 }

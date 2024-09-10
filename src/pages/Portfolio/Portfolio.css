@@ -1,5 +1,5 @@
 .portfolio{
-    margin-top: var(--header-height);
+    margin: var(--header-height) 0;
 }
 
 .portfolio-grid {
@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     .portfolio-grid {
         grid-template-columns: 1fr;
-        gap: 5em;
+        gap: 3em;
         margin-bottom: 13em;
     }
 }

@@ -15,3 +15,9 @@
 .primary-button:hover {
   box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
 }
+
+.primary-button:disabled,
+.primary-button[disabled]{
+  background: #3a3a3a;
+  color: #666666;
+}

@@ -5,7 +5,7 @@ export interface IAppState {
   isAuthenticated: boolean;
   showMobileMenu : boolean;
   error          : string;
-  loading        : boolean;
+  hasRun        : boolean;
 }
 export enum appActionType {
   LOGIN     = "login",
@@ -13,7 +13,7 @@ export enum appActionType {
   SIGNUP    = "signup",
   SHOW_MENU = "show_menu",
   ERROR     = "error",
-  LOADING   = "loading",
+  HAS_RUN   = "has_run",
 }
 
 type AppContextType = {
@@ -24,10 +24,11 @@ type AppContextType = {
   showMobileMenu: boolean;
   setShowMobileMenu: (value: boolean) => void;
   setError: (message: string) => void;
+  setHasRun: (value: boolean) => void;
   login: () => void;
   logout: () => void;
   error: string;
-  loading: boolean;
+  hasRun: boolean;
 };
 
 const initialAuthState: IAppState = {
@@ -35,7 +36,7 @@ const initialAuthState: IAppState = {
   isAuthenticated: false,
   showMobileMenu : false,
   error          : "",
-  loading        : false,
+  hasRun        : false,
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -52,8 +53,8 @@ export const appReducer = (appState: IAppState, action: any) => {
       return { ...appState, showMobileMenu: payload };
     case appActionType.ERROR:
       return { ...appState, error: payload };
-    case appActionType.LOADING:
-      return { ...appState, loading: payload };
+    case appActionType.HAS_RUN:
+      return { ...appState, hasRun: payload };
     default:
       return appState;
   }
@@ -81,10 +82,13 @@ export const AppContextProvider = (prop: {
   const setError = (message: string) => {
     appDispatch({ type: appActionType.ERROR, payload: message});
   };
+  const setHasRun = (value: boolean) => {
+    appDispatch({ type: appActionType.HAS_RUN, payload: value});
+  };
 
   return (
     <AppContext.Provider
-      value={{ ...appState, appDispatch, setShowMobileMenu, login, logout, setError, appActionType }}
+      value={{ ...appState, appDispatch, setShowMobileMenu, login, logout, setError, setHasRun, appActionType }}
     >
       {prop.children}
     </AppContext.Provider>

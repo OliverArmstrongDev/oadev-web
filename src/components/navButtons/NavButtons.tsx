@@ -11,7 +11,7 @@ type NavButtonProps = {
 }
 
 const NavButtons = ({}: NavButtonProps) => {
-    const { isLoggedIn, setError } = useApp();
+    const { isLoggedIn, setError, hasRun } = useApp();
     const isMobile = useIsMobile();
 
     const RenderButton = ({ IconName, buttonText }: { IconName: IconType, buttonText: string }) => {
@@ -23,21 +23,25 @@ const NavButtons = ({}: NavButtonProps) => {
 
     const handleButtonClick = () => {
       !isLoggedIn && setError("Oops, just like a real app, these pages are protected, so you'll need to login first!");
-      console.log("🚀 ~ LOG: ERRO" )
+    }
+    const isReady = () => {
+      
+      if(!isLoggedIn || isLoggedIn && !hasRun) return false;
+      return true;
     }
 
   return (
     <>
           <Link
             style={{ textDecoration: "none" }}
-            to={isLoggedIn ? "/" : "#"}
+            to={isReady() ? "/" : "#"}
             onClick={handleButtonClick}
           >
             <RenderButton IconName={AiOutlineHome } buttonText={"Home"} />
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to={isLoggedIn ? "/portfolio" : "#"}
+            to={isReady() ? "/portfolio" : "#"}
             onClick={handleButtonClick}
           >
             <RenderButton
@@ -47,7 +51,7 @@ const NavButtons = ({}: NavButtonProps) => {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to={isLoggedIn ? "/About" : "#"}
+            to={isReady() ? "/About" : "#"}
             onClick={handleButtonClick}
           >
             <RenderButton
@@ -57,7 +61,7 @@ const NavButtons = ({}: NavButtonProps) => {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to={isLoggedIn ? "/Contact" : "#"}
+            to={isReady() ? "/Contact" : "#"}
             onClick={handleButtonClick}
           >
             <RenderButton
