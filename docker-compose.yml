@@ -3,12 +3,13 @@ services:
     build: 
       context: . 
       dockerfile: Dockerfile
+      args:
+        REACT_APP_EMAILJS_SERVICE_ID: ${SERVICE_ID}
+        REACT_APP_EMAILJS_PUBLIC_KEY: ${PUBLIC_KEY}
+        REACT_APP_EMAILJS_TEMPLATE_ID: ${TEMPLATE_ID}
     ports:
       - "3200:3000" 
     environment:
-      - NODE_ENV=production 
-      - REACT_APP_EMAILJS_SERVICE_ID=${REACT_APP_EMAILJS_SERVICE_ID}
-      - REACT_APP_EMAILJS_PUBLIC_KEY=${REACT_APP_EMAILJS_PUBLIC_KEY}
-      - REACT_APP_EMAILJS_TEMPLATE_ID=${REACT_APP_EMAILJS_TEMPLATE_ID}
+      - NODE_ENV=production
     env_file:
-      - stack.env
+      - .env
