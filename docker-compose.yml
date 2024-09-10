@@ -8,7 +8,7 @@ services:
         REACT_APP_EMAILJS_PUBLIC_KEY: ${PUBLIC_KEY}
         REACT_APP_EMAILJS_TEMPLATE_ID: ${TEMPLATE_ID}
     ports:
-      - "3200:3000" 
+      - "3200:3200" 
     environment:
       - NODE_ENV=production
     env_file:

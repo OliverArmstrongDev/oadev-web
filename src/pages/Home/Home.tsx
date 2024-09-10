@@ -15,7 +15,7 @@ const Home = () => {
     if (!hasRun) {
       loadingTimeout = setTimeout(() => {
         setHasRun(true);
-      }, 3000);
+      }, 2000);
     }
     return () => clearTimeout(loadingTimeout);
   }, [isLoggedIn, hasRun, setHasRun]);
