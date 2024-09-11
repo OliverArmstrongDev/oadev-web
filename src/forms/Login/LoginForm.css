@@ -59,6 +59,7 @@
   background-color: #F2F2F2;
   border: 1px solid #e5e5e500;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  font-size: 16px;
 }
 
 .input-field:focus {
