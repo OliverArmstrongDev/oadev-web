@@ -60,8 +60,8 @@ const LoginForm = ({ editing }: LoginFormProps) => {
         </p>
 
         <p>
-          It's a (Dockerised) Typescript React app using 100% CSS for styling - no component
-          libraries - no dependancies, just good'ol fashon coding skills. 💥
+          It's a Dockerised Typescript React app using 100% CSS for styling - no component
+          libraries - no dependancies, just good'ol fashion coding skills. 💥
         </p>
 
         <p>

@@ -17,7 +17,7 @@ const Portfolio = () => {
           therefore cannot be shared publicly. </strong>
          
         </span>
-        <p>However, below are a handfull of projects I have completed in the past.</p>
+        <p>However, below are a handful of projects I have completed in the past.</p>
         <p>
           Some are full stack apps, one is a Wordpress site and the others are ReactJs or React Native apps.
         </p>
