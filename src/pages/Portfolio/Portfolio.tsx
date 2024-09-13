@@ -5,8 +5,9 @@ import "./Portfolio.css";
 import freebird from "../../assets/images/freebird.png";
 import frozen from "../../assets/images/frozen.png";
 import greyburn from "../../assets/images/greyburn.png";
-import farms from "../../assets/images/farms.png";
+import elixir from "../../assets/images/elixir.png";
 import listMeister from "../../assets/images/list-meister.png";
+import thsf from "../../assets/images/thsf.png";
 
 const Portfolio = () => {
   return (
@@ -17,16 +18,17 @@ const Portfolio = () => {
           therefore cannot be shared publicly. </strong>
          
         </span>
-        <p>However, below are a handful of projects I have completed in the past.</p>
+        <p>However, below are a handful of projects I have completed.</p>
         <p>
           Some are full stack apps, one is a Wordpress site and the others are ReactJs or React Native apps.
         </p>
       </div>
       <div className="portfolio-grid">
         <PortfolioCard
-          title="Farms Water Monitoring"
-          text="This is a farm water meter monitoring React web app. I built the full-stack (MERN) app, while working for Bluetwist NZ."
-          imageSrc={farms}
+          title="Elixir Cloud Medical Practice Management System"
+          text="I started with a sister company (Bluetwist NZ), where I built a farm water meter monitoring MERN stack app (which I can't show due to NDA). Then I was invited over to Elixir where I implemented hundreds of bug fixes, UX and UI improvements, built reusable components and built a shiny new node/express API to integrate with an external 3rd party referral API."
+          imageSrc={elixir}
+          optionalText="Image credit https://www.elixir.nz"
         />
         <PortfolioCard
           title="Building Maintenance Portal"
@@ -35,7 +37,7 @@ const Portfolio = () => {
           imageSrc={greyburn}
         />
         <PortfolioCard
-          title="Wordpress Redesign"
+          title="Website Redesign"
           text="Freebird Wedding Films was a redesign of a website that was originally created by the owner.
           There was previously one page with one big section. There were no showcase videos and no calls to action, hence it had 0% conversions."
           imageSrc={freebird}
@@ -44,6 +46,11 @@ const Portfolio = () => {
           title="List Meister - React Native"
           text="A private shopping list (or todo) app. Has a current list and a master list for regularly used items."
           imageSrc={listMeister}
+        />
+        <PortfolioCard
+          title="The Housesitting Family profile website"
+          text="Nothing fancy. A nice simple profile website for our personal housesitting endeavours, used to provide some useful information to potential home owners looking to use our services."
+          imageSrc={thsf}
         />
         <PortfolioCard
           title="My first Ever React Game!"

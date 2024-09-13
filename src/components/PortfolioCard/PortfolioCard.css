@@ -9,7 +9,9 @@
 
 .portfolio-card-title {}
 
-.portfolio-card-text {}
+.opt-text {
+    font-size: 9px;
+}
 
 .portfolio-card-image {
     max-width: 100%;

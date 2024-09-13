@@ -4,10 +4,11 @@ import "./PortfolioCard.css"
 type PortfolioCardProps = {
     title: string
     text: string
+    optionalText?: string
     imageSrc: string
 }
 
-const PortfolioCard = ({title, text, imageSrc}: PortfolioCardProps) => {
+const PortfolioCard = ({title, text, imageSrc, optionalText}: PortfolioCardProps) => {
   return (
     <div className="portfolio-card card">
         <div className="portfolio-card-title"><h3>{title}</h3></div>
@@ -15,6 +16,7 @@ const PortfolioCard = ({title, text, imageSrc}: PortfolioCardProps) => {
         <div className="portfolio-card-image">
         <Image  src={imageSrc}/>
         </div>
+        {optionalText && <span className="opt-text">{optionalText}</span>}
     </div>
   )
 }
